@@ -6,7 +6,7 @@ import { StyleSheet, View } from "react-native";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { selectRange } from "../redux/graph";
-import Switcher from "../components/range/switcher";
+import Switcher from "../components/dateRange/switcher";
 import { RANGES } from "../redux/graph";
 
 @connect(

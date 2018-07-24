@@ -1,22 +1,21 @@
 // @flow
 
 import { combineReducers } from 'redux';
-// import reducers
+
 import graph from './graph';
-import coins from './coins';
-// import types
-import type { State as Graph } from './graph';
-import type { State as Coins } from './coins';
+import coins from './coin';
+import type { State as GraphState } from './graph';
+import type { State as CoinState } from './coin';
 
 export type Store = {
-  +graph: Graph,
-  +coins: Coins,
+  +graph: GraphState,
+  +coins: CoinState,
 };
 
 const reducers = {
   graph,
   coins,
 };
-export type Reducers = typeof reducers;
 
+export type Reducers = typeof reducers;
 export default combineReducers(reducers);

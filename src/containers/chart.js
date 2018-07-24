@@ -17,14 +17,14 @@ import Line from '../components/graph/line';
         current: symbol,
       },
       graph: {
-        range,
+        dateRange,
         prices,
         loading,
       },
     } = state;
     return {
       symbol,
-      range,
+      dateRange,
       prices,
       loading,
     };
@@ -43,9 +43,9 @@ export default class Graph extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    // Update graph data if current symbol or range were changed
+    // Update graph data if current symbol or dateRange were changed
     if (nextProps.symbol !== this.props.symbol
-      || nextProps.range !== this.props.range) {
+      || nextProps.dateRange !== this.props.dateRange) {
       this.props.updateGraphPrices();
     }
     this.setState({ prices: nextProps.prices });

@@ -15,11 +15,11 @@ import {
   COIN_SET
 } from "./types";
 
-type State = {
+export type State = {
   symbol: string,
   name: string,
   price?: number,
-  priceYesterday?: number,
+  price24h?: number,
   priceChange?: number
 };
 
@@ -46,15 +46,15 @@ export const updateAllCurrentPrices = (): ThunkAction => async (
 ) => {
   dispatch({ type: COIN_PRICE_FETCH_START });
   const {
-    coins: { list }
+    coinList: { coinList }
   } = getState();
-  const symbols = list.map(item => item.symbol);
+  const symbols = coinList.map(coin => coin.symbol);
   const response = await getAllCurrentPrices(symbols);
   dispatch({
     type: COIN_PRICE_FETCH_SUCCESS,
     response
   });
-  list.forEach(coin => dispatch(fetchYesterdayPrice(coin.symbol)));
+  coinList.forEach(coin => dispatch(fetchYesterdayPrice(coin.symbol)));
 };
 
 export const fetchYesterdayPrice = (

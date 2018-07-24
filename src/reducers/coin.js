@@ -7,24 +7,35 @@ import {
   COIN_SET,
   COIN_PRICE_FETCH_START,
   COIN_PRICE_FETCH_SUCCESS,
-  COIN_PRICE_DAY_AGO_UPDATED
+  COIN_PRICE_DAY_AGO_FETCH_SUCCESS
 } from "../actions/types";
 
 import defaultCoins from "../utils/constants";
 
+export type Coin = {
+  symbol: string,
+  name: string,
+  price?: number,
+  price24h?: number,
+  priceChange?: number
+};
+
 export type State = {
   +isLoading: boolean,
   +currentCoin: string,
-  +coinList: Array<number>
+  +coinList: Array<Coin>
 };
 
 const initialState = {
   isLoading: true,
-  currentCoin: "BTC", // Initially selected coin
+  currentCoin: "BTC",
   coinList: defaultCoins
 };
 
-export default function reducer(state: State = initialState, action: Action = Action): State {
+export default function reducer(
+  state: State = initialState,
+  action: Action
+): State {
   switch (action.type) {
     case COIN_PRICE_FETCH_START: {
       return {
@@ -34,17 +45,17 @@ export default function reducer(state: State = initialState, action: Action = Ac
     }
     case COIN_PRICE_FETCH_SUCCESS: {
       const { coinList } = state;
-      const { response } = action;
+      const { payload } = action;
       return {
         ...state,
         loading: false,
         coinList: coinList.map(coin => ({
           ...coin,
-          price: response[coin.symbol] ? response[coin.symbol].USD : undefined
+          price: payload[coin.symbol] ? payload[coin.symbol].USD : undefined
         }))
       };
     }
-    case COIN_PRICE_DAY_AGO_UPDATED: {
+    case COIN_PRICE_DAY_AGO_FETCH_SUCCESS: {
       const { coinList } = state;
       const { symbol, price } = action;
       return {

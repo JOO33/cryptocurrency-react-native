@@ -5,4 +5,6 @@ export const defaultCoins = [
     { symbol: 'LTC', name: 'Litecoin' },
     { symbol: 'USDT', name: 'Tether' }
     { symbol: 'DOGE', name: 'Dogecoin' }
-]
+];
+
+export const localeCurrency = "USD";

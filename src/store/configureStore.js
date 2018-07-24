@@ -6,7 +6,7 @@ import createLogger from "redux-logger";
 import thunk from 'redux-thunk';
 
 import rootReducer from '../reducers';
-import type { Store } from '../actions/types';
+import type { Store } from '../reducers';
 
 const isDebuggingInChrome = false;
 

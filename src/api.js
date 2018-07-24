@@ -11,6 +11,21 @@ export const HISTORICAL_HOURLY_DATA = "histohour";
 export const HISTORICAL_DAILY_DATA = "histoday";
 export const MUTIPLE_SYMBOLS_PRICE = "pricemulti";
 
+export type ApiCategory =
+  | typeof HISTORICAL_HOURLY_DATA
+  | typeof HISTORICAL_DAILY_DATA
+  | typeof MUTIPLE_SYMBOLS_PRICE;
+
+export type HistoricalQueryParams = {
+  apiCategory: ApiCategory,
+  data: {
+    fsym: string,
+    tsym: string,
+    aggregate: number,
+    limit: number
+  }
+};
+
 export type HistoryResponse = {
   Reponse: string,
   Type: number,
@@ -31,10 +46,9 @@ export type HistoryResponse = {
   conversionSymbol: string
 };
 
-export type CurrencyUnit = "USD" | "BTC";
 export type PriceMultiResponse = {
   [symbol: string]: {
-    [CurrencyUnit]: number
+    ["USD"]: number
   }
 };
 
@@ -45,7 +59,7 @@ export const get = async (query: string): Promise<Object> => {
 
 export const getAllCurrentPrices = async (
   coinSymbolsList: Array<string>
-): Promise<Object> => {
+): Promise<PriceMultiResponse> => {
   const symbolsString = coinSymbolsList.join(",");
   const response = await get(
     `data/${MUTIPLE_SYMBOLS_PRICE}?fsyms=${symbolsString}&tsyms=USD`
@@ -53,7 +67,9 @@ export const getAllCurrentPrices = async (
   return response;
 };
 
-export const getYesterdayData = async (coinSymbol: string): Promise<HistoryResponse> => {
+export const getYesterdayData = async (
+  coinSymbol: string
+): Promise<HistoryResponse> => {
   const timestamp = Math.round(new Date().getTime() / 1000);
   const timestampYesterday = timestamp - 24 * 3600;
   const response = await get(
@@ -62,20 +78,23 @@ export const getYesterdayData = async (coinSymbol: string): Promise<HistoryRespo
   return response;
 };
 
-export const getTodayData = async (coinSymbol: string): Promise<Object> => {
+export const getTodayData = async (
+  coinSymbol: string
+): Promise<HistoryResponse> => {
+  const timestampMidnight = new Date().setHours(0, 0, 0, 0);
   const response = await get(
-    `data/histohour?fsym=${coinSymbol}&tsym=USD&limit=1&toTs=${timestampYesterday}`
+    `data/histohour?fsym=${coinSymbol}&tsym=USD&limit=1&toTs=${timestampMidnight}`
   );
   return response;
 };
 
 export const getHistoricalData = async (
-  coinSymbol: string
-): Promise<Object> => {
+  query: HistoricalQueryParams
+): Promise<HistoryResponse> => {
+  const { apiCategory } = query;
+  const { fsym, tsym, aggregate, limit } = query.data;
   const response = await get(
-    `data/histohour?fsym=${coinSymbol}&tsym=USD&limit=1&toTs=${timestampYesterday}`
+    `data/${apiCategory}?fsym=${fsym}&tsym=${tsym}&limit=${limit}&aggregate=${aggregate}`
   );
   return response;
 };
-
-export const parseYesterdayData = (response: HistoryResponse): number => {};
