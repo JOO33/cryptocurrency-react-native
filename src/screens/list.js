@@ -2,9 +2,7 @@
 import React, { Component } from "react";
 import { StyleSheet, View } from "react-native";
 import type { NavigatorProps } from "../navigator";
-import Graph from "../containers/Graph";
-import DateRange from "../containers/DateRange";
-import CoinList from "../containers/CoinList";
+import { Graph, DateSelector, CoinList } from "../containers";
 
 export default class extends Component<NavigatorProps> {
   _navigateToAdd = () => {
@@ -16,7 +14,7 @@ export default class extends Component<NavigatorProps> {
     return (
       <View style={styles.container}>
         <Graph />
-        <DateRange />
+        <DateSelector />
         <CoinList onAddCoin={this._navigateToAdd} />
       </View>
     );

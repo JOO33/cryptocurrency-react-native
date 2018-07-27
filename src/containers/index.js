@@ -3,6 +3,6 @@
 import Add from "./Add";
 import Graph from "./Graph";
 import CoinList from "./CoinList";
-import DateRange from "./DateRange";
+import DateSelector from "./DateSelector";
 
-export { Add, Graph, CoinList, DateRange };
+export { Add, Graph, CoinList, DateSelector };
