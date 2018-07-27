@@ -1,18 +1,21 @@
 // @flow
 
-import React, { Component } from 'react';
+import React, { Component } from "react";
 import {
-  Dimensions, StyleSheet, Text, TouchableOpacity, View,
-} from 'react-native';
-import Icon from 'react-native-vector-icons/Ionicons';
+  Dimensions,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View
+} from "react-native";
+import Icon from "react-native-vector-icons/Ionicons";
 
-const { width, height } = Dimensions.get('window');
+const { width, height } = Dimensions.get("window");
 
-export default class AddButton extends Component {
-  props: {
-    onPress: () => void
-  };
-
+type Props = {
+  onPress: () => void
+};
+export default class AddButton extends Component<Props> {
   render() {
     const { onPress } = this.props;
     return (
@@ -29,22 +32,22 @@ export default class AddButton extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    alignItems: 'center',
+    alignItems: "center",
     width,
-    marginTop: 15,
+    marginTop: 15
   },
   button: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    padding: 15,
+    flexDirection: "row",
+    alignItems: "center",
+    padding: 15
   },
   icon: {
     fontSize: 24,
-    color: '#FFFFFF',
+    color: "#FFFFFF"
   },
   text: {
-    color: '#FFFFFF',
-    fontFamily: 'Avenir',
-    fontSize: 16,
-  },
+    color: "#FFFFFF",
+    fontFamily: "Avenir",
+    fontSize: 16
+  }
 });

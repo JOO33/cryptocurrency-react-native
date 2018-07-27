@@ -14,9 +14,14 @@ values: Array<number>,
     fillColor: string,
     strokeColor: string,
     strokeWidth: number
-},
+};
 
-export default class Line extends Component<Props>: React$Element<Props> {
+type State = {
+  width: number,
+  height: number
+};
+
+export default class Line extends Component<Props, State> {
   static defaultProps = {
     fillColor: "#50FFB1",
     strokeColor: "#4FB286",

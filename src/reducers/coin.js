@@ -40,7 +40,7 @@ export default function reducer(
     case COIN_PRICE_FETCH_START: {
       return {
         ...state,
-        loading: true
+        isLoading: true
       };
     }
     case COIN_PRICE_FETCH_SUCCESS: {
@@ -48,7 +48,7 @@ export default function reducer(
       const { payload } = action;
       return {
         ...state,
-        loading: false,
+        isLoading: false,
         coinList: coinList.map(coin => ({
           ...coin,
           price: payload[coin.symbol] ? payload[coin.symbol].USD : undefined

@@ -4,8 +4,8 @@ import React, { Component } from "react";
 import { ListView, RefreshControl } from "react-native";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { addCoin } from "../redux/currencies";
-import Row from "../components/currency/row";
+import { addCoin } from "../actions/coins";
+import Row from "../components/Coin/Row";
 
 import colors from "../utils/colors";
 // Type API response shape
@@ -23,20 +23,27 @@ type Coin = {
   symbol: string,
   name: string
 };
+type Props = {
+  onAddedCoin: () => void,
+  addCoin: (symbol: string, name: string) => void
+};
+type State = {
+  isLoading: boolean,
+  dataSource: ListView.DataSource
+};
 
-@connect(
-  state => ({}),
-  dispatch => bindActionCreators({ addCoin }, dispatch)
-)
-export default class Add extends Component {
-  props: {
-    onAddedCoin: () => void
+const mapStateToProps = (state) => {}; 
+const mapDispatchToProps = dispatch =>
+  bindActionCreators({ addCoin }, dispatch);
+@connect(mapStateToProps, mapDispatchToProps)
+export default class Add extends Component<Props, State> {
+  static defaultProps = {
+    onAddedCoin: () => {},
+    addCoin: () => {},
   };
 
   state = {
-    // Used to show activity indicator when the data is being loaded
-    loading: true,
-    // Holds the data for ListView
+    isLoading: true,
     dataSource: new ListView.DataSource({
       rowHasChanged: (r1, r2) => r1 !== r2
     })
@@ -73,34 +80,32 @@ export default class Add extends Component {
   updateDataSource(coins: Array<Coin>) {
     this.setState({
       dataSource: this.state.dataSource.cloneWithRows(coins),
-      loading: false
+      isLoading: false
     });
   }
 
-  // Render each row using Row component
   renderRow = (coin: Coin) => {
     const { symbol, name } = coin;
     return <Row symbol={symbol} name={name} onPress={this.onAddCoin} />;
   };
 
-  // Handle row presses
   onAddCoin = (symbol: string, name: string) => {
     const { addCoin, onAddedCoin } = this.props;
-    addCoin(symbol, name); // redux action
-    onAddedCoin(); // closes the modal
+    addCoin(symbol, name);
+    onAddedCoin();
   };
 
   render() {
-    const { loading } = this.state;
+    const { isLoading } = this.state;
     return (
       <ListView
         dataSource={this.state.dataSource}
         renderRow={this.renderRow}
         refreshControl={
           <RefreshControl
-            refreshing={loading}
+            refreshing={isLoading}
             onRefresh={this.loadListData}
-            tintColor=colors.white
+            tintColor={colors.white}
           />
         }
       />

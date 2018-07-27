@@ -1,9 +1,7 @@
 // @flow
 
-import React, { Component } from 'react';
-import {
-  StyleSheet, Text, TouchableHighlight, View,
-} from 'react-native';
+import React, { Component } from "react";
+import { StyleSheet, Text, TouchableHighlight, View } from "react-native";
 
 type Props = {
   symbol: string,
@@ -19,7 +17,11 @@ export default class Row extends Component<Props> {
   render() {
     const { symbol, name } = this.props;
     return (
-      <TouchableHighlight onPress={this.onPress} underlayColor="#7E57C2" style={styles.container}>
+      <TouchableHighlight
+        onPress={this.onPress}
+        underlayColor="#7E57C2"
+        style={styles.container}
+      >
         <View>
           <Text style={styles.text} numberOfLines={1}>
             {symbol}
@@ -36,19 +38,19 @@ export default class Row extends Component<Props> {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    borderBottomColor: 'rgba(255,255,255,0.25)',
+    borderBottomColor: "rgba(255,255,255,0.25)",
     borderBottomWidth: StyleSheet.hairlineWidth,
-    padding: 10,
+    padding: 10
   },
   text: {
-    color: '#FFFFFF',
-    fontFamily: 'Avenir',
+    color: "#FFFFFF",
+    fontFamily: "Avenir",
     fontSize: 16,
-    fontWeight: '500',
+    fontWeight: "500"
   },
   name: {
-    color: 'rgba(255,255,255,0.5)',
+    color: "rgba(255,255,255,0.5)",
     fontSize: 12,
-    fontWeight: '300',
-  },
+    fontWeight: "300"
+  }
 });

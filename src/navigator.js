@@ -11,7 +11,6 @@ import { createStackNavigator } from 'react-navigation';
 
 import List from './screens/list';
 import Add from './screens/add';
-import Detail from './screens/detail';
 
 export type NavigatorProps = {
   navigation: NavigationScreenProp<NavigationState>

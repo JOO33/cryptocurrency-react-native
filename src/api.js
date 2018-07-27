@@ -10,6 +10,7 @@ const APIBaseURL = "https://min-api.cryptocompare.com";
 export const HISTORICAL_HOURLY_DATA = "histohour";
 export const HISTORICAL_DAILY_DATA = "histoday";
 export const MUTIPLE_SYMBOLS_PRICE = "pricemulti";
+export const COIN_LIST = "all/coinlist";
 
 export type ApiCategory =
   | typeof HISTORICAL_HOURLY_DATA
@@ -24,6 +25,19 @@ export type HistoricalQueryParams = {
     aggregate: number,
     limit: number
   }
+};
+
+export type CoinListResponse = {
+  Reponse: string,
+  Data: {
+    [Symbol:string]: {
+      Id: string,
+      ImageUrl: string,
+      Name: string,
+      CoinName: string
+    }
+  },
+  BaseImageUrl: string
 };
 
 export type HistoryResponse = {
@@ -96,5 +110,10 @@ export const getHistoricalData = async (
   const response = await get(
     `data/${apiCategory}?fsym=${fsym}&tsym=${tsym}&limit=${limit}&aggregate=${aggregate}`
   );
+  return response;
+};
+
+export const getAllCoinsList = async (): Promise<CoinListResponse> => {
+  const response = await get(`data/${COIN_LIST}`);
   return response;
 };

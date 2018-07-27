@@ -1,25 +1,33 @@
 // @flow
 
-import React, { Component } from 'react';
-import { StyleSheet, View } from 'react-native';
-import DateRange from './DateRange';
+import React, { Component } from "react";
+import { StyleSheet, View } from "react-native";
 
-type Props = { ranges: any, current: string, onSelectRange: any };
+import DateLabel from "./DateLabel";
 
-export default Switcher = (props: Props): React$Element<Props> => {
-  const { ranges, current, onSelectRange } = props;
-  return (
-    <View style={styles.container}>
-      {ranges.map((name, index): DateRange => (
-        <DateRange name={name} active={current === name} onPress={onSelectRange} key={index} />
-      ))}
-    </View>
-  );
-};
+type Props = { dates: any, current: string, onSelectDate: any };
+
+export default class Switcher extends Component<Props> {
+  render() {
+    const { dates, current, onSelectDate } = this.props;
+    return (
+      <View style={styles.container}>
+        {dates.map((name, index) => (
+          <DateLabel
+            name={name}
+            active={current === name}
+            onPress={onSelectDate}
+            key={index}
+          />
+        ))}
+      </View>
+    );
+  }
+}
 
 const styles = StyleSheet.create({
   container: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-  },
+    flexDirection: "row",
+    justifyContent: "space-between"
+  }
 });

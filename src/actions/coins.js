@@ -15,14 +15,6 @@ import {
   COIN_SET
 } from "./types";
 
-export type State = {
-  symbol: string,
-  name: string,
-  price?: number,
-  price24h?: number,
-  priceChange?: number
-};
-
 export const selectCoin = (symbol: string): Action => ({
   type: COIN_SELECTED,
   symbol

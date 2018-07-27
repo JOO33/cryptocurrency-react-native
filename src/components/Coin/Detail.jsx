@@ -13,14 +13,14 @@ import Change from "./change";
 
 const { width, height } = Dimensions.get('window');
 
-const type Props = {
+type Props = {
     symbol: string,
     name: string,
     price: number,
     change: number,
     active: boolean,
     onPress: Function
-},
+}
 
 export default class Coin extends Component<Props> {
   static defaultProps = {
