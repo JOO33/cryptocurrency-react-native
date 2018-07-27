@@ -3,10 +3,10 @@ import React from "react";
 
 import renderer from "react-test-renderer";
 
-import { AddButton } from "../../src/components/Coin/AddButton";
-import { Change } from "../../src/components/Coin/Change";
-import { Coin } from "../../src/components/Coin/Detail";
-import { Row } from "../../src/components/Coin/Row";
+import AddButton from "../../src/components/Coin/AddButton";
+import Change from "../../src/components/Coin/Change";
+import Coin from "../../src/components/Coin/Detail";
+import Row from "../../src/components/Coin/Row";
 
 test("AddButton renders correctly", () => {
   const tree = renderer.create(<AddButton />).toJSON();

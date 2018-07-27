@@ -3,7 +3,7 @@ import React from "react";
 
 import renderer from "react-test-renderer";
 
-import { Line } from "../../src/components/Graph/Line";
+import Line from "../../src/components/Graph/Line";
 
 // Draws a simple graph with given values to test the output line
 test("Line renders correctly", () => {
