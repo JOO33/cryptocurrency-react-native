@@ -1,19 +1,20 @@
 // @flow
 
 import React, { Component } from "react";
-import { ART, Dimensions, LayoutAnimation, StyleSheet, View } from "react-native";
-const {
-    Surface,
-    Path,
-    Group,
-    Shape,
-} = ART;
+import {
+  ART,
+  Dimensions,
+  LayoutAnimation,
+  StyleSheet,
+  View
+} from "react-native";
+const { Surface, Path, Group, Shape } = ART;
 
 type Props = {
-values: Array<number>,
-    fillColor: string,
-    strokeColor: string,
-    strokeWidth: number
+  values: Array<number>,
+  fillColor: string,
+  strokeColor: string,
+  strokeWidth: number
 };
 
 type State = {

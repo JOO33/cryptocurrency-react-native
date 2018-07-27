@@ -1,4 +1,5 @@
 // @flow
+
 import type { Action } from "../actions/types";
 import {
   COIN_ADDED,
