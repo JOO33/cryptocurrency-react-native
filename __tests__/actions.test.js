@@ -17,35 +17,34 @@ afterEach(() => {
   expect(store.getActions()).toMatchSnapshot();
 });
 
-
 // Simple dispatch tests for actions
 test("Dispatch COIN_SELECTED action", () => {
-  const symbol = "BTC"
+  const symbol = "BTC";
   store.dispatch(coinActions.selectCoin(symbol));
 });
 
 test("Dispatch COIN_ADDED action", () => {
-  const symbol = "BTC"
-  const name = "Bitcoin"
+  const symbol = "BTC";
+  const name = "Bitcoin";
   store.dispatch(coinActions.addCoin(symbol, name));
 });
 
 test("Dispatch COIN_PRICE_FETCH_SUCCESS action", () => {
-  const coinList = []
+  const coinList = [];
   store.dispatch(coinActions.updateAllCurrentPrices(symbol, activity));
 });
 
 test("Dispatch COIN_PRICE_DAY_AGO_FETCH_SUCCESS action", () => {
-  const symbol = "BTC"
+  const symbol = "BTC";
   store.dispatch(coinActions.fetchYesterdayPrice(symbol, activity));
 });
 
 test("Dispatch GRAPH_DATE_RANGE_SELECT action", () => {
-  const dateRange = "1D"
+  const dateRange = "1D";
   store.dispatch(graphActions.selectRange(dateRange));
 });
 
 test("Dispatch GRAPH_FETCH_SUCCESS action", () => {
-  const dateRange = "1D"
+  const dateRange = "1D";
   store.dispatch(graphActions.getGraphData(dateRange));
 });

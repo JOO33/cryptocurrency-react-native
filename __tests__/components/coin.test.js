@@ -21,31 +21,19 @@ test("Change on Coin view renders correctly", () => {
 });
 
 test("Change view renders with a positive value", () => {
-  const tree = renderer
-    .create(
-      <EnterLogin value={1} />
-    )
-    .toJSON();
+  const tree = renderer.create(<EnterLogin value={1} />).toJSON();
 
   expect(tree).toMatchSnapshot();
 });
 
 test("Change view renders with a negative value", () => {
-  const tree = renderer
-    .create(
-      <EnterLogin value={-1} />
-    )
-    .toJSON();
+  const tree = renderer.create(<EnterLogin value={-1} />).toJSON();
 
   expect(tree).toMatchSnapshot();
 });
 
 test("Change view renders with a zero value", () => {
-  const tree = renderer
-    .create(
-      <EnterLogin value={0} />
-    )
-    .toJSON();
+  const tree = renderer.create(<EnterLogin value={0} />).toJSON();
 
   expect(tree).toMatchSnapshot();
 });
@@ -55,13 +43,9 @@ test("Coin Detail view renders", () => {
     symbol: "BTC",
     name: "Bitcoin",
     price: 100,
-    change: 10,
-  }
-  const tree = renderer
-    .create(
-      <Coin {...mockData} />
-    )
-    .toJSON();
+    change: 10
+  };
+  const tree = renderer.create(<Coin {...mockData} />).toJSON();
 
   expect(tree).toMatchSnapshot();
 });
@@ -73,27 +57,18 @@ test("Coin Detail view renders with active state", () => {
     price: 100,
     change: 10,
     active: true
-  }
-  const tree = renderer
-    .create(
-      <Coin {...mockData} />
-    )
-    .toJSON();
+  };
+  const tree = renderer.create(<Coin {...mockData} />).toJSON();
 
   expect(tree).toMatchSnapshot();
 });
 
-
 test("Coin Row view renders", () => {
   const mockData = {
-      symbol: "BTC",
-      name: "Bitcoin"
-    }
-  const tree = renderer
-    .create(
-      <Row {...mockData} />
-    )
-    .toJSON();
+    symbol: "BTC",
+    name: "Bitcoin"
+  };
+  const tree = renderer.create(<Row {...mockData} />).toJSON();
 
   expect(tree).toMatchSnapshot();
 });
