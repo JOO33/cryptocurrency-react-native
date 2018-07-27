@@ -2,9 +2,9 @@ import "react-native";
 import React from "react";
 
 import renderer from "react-test-renderer";
-import DATE_RANGE_DEFAULT, DATE_RANGES from "../src/actions/graph"
-import { DateLabel } from "../src/components/DateRange/DateLabel";
-import { Switcher } from "../src/components/DateRange/Switcher";
+import DATE_RANGE_DEFAULT, DATE_RANGES from "../../src/actions/graph"
+import { DateLabel } from "../../src/components/DateRange/DateLabel";
+import { Switcher } from "../../src/components/DateRange/Switcher";
 
 test("DateLabel renders correctly", () => {
   const name = DATE_RANGE_DEFAULT;
