@@ -7,7 +7,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { updateAllCurrentPrices, selectCoin } from "../actions/coins";
 
-import Coin from "../components/Coin/Detail";
+import Detail from "../components/Coin/Detail";
 import AddButton from "../components/Coin/AddButton";
 
 type Props = {
@@ -80,7 +80,7 @@ export default class CoinList extends Component<Props> {
           {list.map((coin, index) => {
             const { symbol, name, price, priceChange } = coin;
             return (
-              <Coin
+              <Detail
                 symbol={symbol}
                 name={name}
                 price={price}

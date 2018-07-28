@@ -2,8 +2,8 @@ import React, { Component } from "react";
 import { ActivityIndicator, StyleSheet, View } from "react-native";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { updateGraphPrices } from "../redux/graph";
-import Line from "../components/graph/line";
+import { updateGraphPrices } from "../reducers/graph";
+import Line from "../components/Graph/Line";
 
 @connect(
   state => {

@@ -5,7 +5,7 @@ import { StyleSheet, TouchableOpacity, View } from "react-native";
 import Icon from "react-native-vector-icons/Ionicons";
 
 import type { NavigatorProps } from "../navigator";
-import Add from "../containers/Add";
+import { Add } from "../containers";
 
 export default class extends Component<NavigatorProps> {
   _navigateBack = () => {
